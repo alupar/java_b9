@@ -3,6 +3,8 @@ package ru.stqa.pft.sandbox;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static ru.stqa.pft.sandbox.MyFirstProgram.distance;
+
 
 public class SquareTests {
 
@@ -16,6 +18,6 @@ public class SquareTests {
     Point p4 = new Point(-4, 0);
 
     Assert.assertEquals( p1.distance(p2), 5.0);
-    Assert.assertEquals( p3.distance(p4), 	5.656854249492381);
+    Assert.assertEquals( distance(p3, p4), 	5.656854249492381);
   }
 }
