@@ -9,7 +9,7 @@ public class GroupCreationTests {
   private WebDriver wd;
 
   @BeforeMethod(alwaysRun = true)
-  public void setUp() throws Exception {
+  public void setUp() {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/group.php");
@@ -28,13 +28,12 @@ public class GroupCreationTests {
   }
 
   @Test
-  public void testGroupCreation() throws Exception {
+  public void testGroupCreation() {
     gotoGroupPage();
     initGroupCreation();
-    fillGroupForm(new GroupData("test11", "test12", "test13"));
+    fillGroupForm(new GroupData("test6", "test12", "test13"));
     submitGroupCreation();
     returnToGroupPage();
-    logout();
   }
 
   private void logout() {
@@ -71,6 +70,7 @@ public class GroupCreationTests {
 
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
+    logout();
     wd.quit();
   }
 

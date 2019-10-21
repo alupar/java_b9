@@ -1,17 +1,22 @@
 package ru.stqa.pft.addressbook;
 
-import java.util.concurrent.TimeUnit;
-
-import org.testng.annotations.*;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 public class UserCreationTests {
   private WebDriver wd;
 
-  @BeforeClass(alwaysRun = true)
-  public void setUp() throws Exception {
+  @BeforeMethod(alwaysRun = true)
+  public void setUp() {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
@@ -29,11 +34,10 @@ public class UserCreationTests {
   }
 
   @Test
-  public void testUntitledTestCase() throws Exception {
+  public void testUserCreation() {
     initUserCreation();
-    fillUserForm(new UserData("петр", "Иванович", "Иванов", "ivanov", "work", "lol@lol.ru", "test@test.ru", "localhost", "+79991112233", "test11"));
+    fillUserForm(new UserData("Спиридон", "Иванович", "Иванов", "ivanov", "work", "lol@lol.ru", "test@test.ru", "localhost", "+79991112233", "test11"));
     submitUserCreation();
-    logout();
     // wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]")).click();
   }
 
@@ -84,8 +88,9 @@ public class UserCreationTests {
     wd.findElement(By.linkText("add new")).click();
   }
 
-  @AfterClass(alwaysRun = true)
+  @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
+    logout();
     wd.quit();
   }
 

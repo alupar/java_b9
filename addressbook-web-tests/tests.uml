@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="294.0">ru.stqa.pft.addressbook.GroupCreationTests</node>
+    <node x="198.0" y="294.0">ru.stqa.pft.addressbook.UserCreationTests</node>
+    <node x="0.0" y="0.0">ru.stqa.pft.addressbook.UserData</node>
+    <node x="215.0" y="0.0">ru.stqa.pft.addressbook.GroupData</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="0.0" y="52.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
