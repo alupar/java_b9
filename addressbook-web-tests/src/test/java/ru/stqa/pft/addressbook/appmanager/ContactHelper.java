@@ -25,9 +25,9 @@ public class ContactHelper extends BaseHelper {
     type(By.name("email"), userData.getEmail());
     type(By.name("email2"), userData.getEmail2());
     type(By.name("homepage"), userData.getHomepage());
-    click(By.name("new_group"));
-    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getNew_group());
-    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Group:'])[1]/following::option[3]"));
+    //click(By.name("new_group"));
+    //new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getNew_group());
+    //click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Group:'])[1]/following::option[3]"));
     type(By.name("mobile"), userData.getMobile());
     click(By.name("work"));
   }
@@ -36,4 +36,18 @@ public class ContactHelper extends BaseHelper {
     click(By.linkText("add new"));
   }
 
+  public void initUserModification() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void submitUserModification() {
+    click(By.name("update"));
+  }
+  public void CloseAlert() {
+    wd.switchTo().alert().accept();
+  }
+
+  public void deleteSelectedUsers() {
+    click(By.xpath("//input[@value='Delete']"));
+  }
 }
