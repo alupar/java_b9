@@ -55,4 +55,20 @@ public class UserHelper extends BaseHelper {
   public void deleteSelectedUsers() {
     click(By.xpath("//input[@value='Delete']"));
   }
+
+  public boolean isThereAUser() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
+  public void createUser(UserData user, boolean creation) {
+    initUserCreation();
+    fillUserForm(user, creation);
+    submitUserCreation();
+  }
+
+  public void editUser(UserData user, boolean creation) {
+    initUserModification();
+    fillUserForm(user, creation);
+    submitUserModification();
+  }
 }
