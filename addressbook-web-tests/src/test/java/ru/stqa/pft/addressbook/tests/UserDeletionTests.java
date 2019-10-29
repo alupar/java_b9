@@ -9,5 +9,6 @@ public class UserDeletionTests extends TestBase {
     app.getUserHelper().selectCheckbox();
     app.getUserHelper().deleteSelectedUsers();
     app.getUserHelper().CloseAlert();
+    app.getNavigationHelper().goHomePage();
   }
 }
