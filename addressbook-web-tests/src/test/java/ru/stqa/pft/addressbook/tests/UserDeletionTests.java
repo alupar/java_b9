@@ -6,8 +6,8 @@ public class UserDeletionTests extends TestBase {
 
   @Test
   public void testUserDeletion(){
-    app.getContactHelper().selectCheckbox();
-    app.getContactHelper().deleteSelectedUsers();
-    app.getContactHelper().CloseAlert();
+    app.getUserHelper().selectCheckbox();
+    app.getUserHelper().deleteSelectedUsers();
+    app.getUserHelper().CloseAlert();
   }
 }

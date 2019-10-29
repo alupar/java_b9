@@ -16,7 +16,7 @@ public class ApplicationManager {
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
-  private ContactHelper contactHelper;
+  private UserHelper userHelper;
   private String browser;
 
   public ApplicationManager(String browser) {
@@ -31,12 +31,12 @@ public class ApplicationManager {
     } else if (browser.equals(BrowserType.IE)) {
       wd = new InternetExplorerDriver();
     }
-    wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
-    contactHelper = new ContactHelper(wd);
+    userHelper = new UserHelper(wd);
     sessionHelper.login("admin", "secret");
   }
 
@@ -64,7 +64,7 @@ public class ApplicationManager {
     return navigationHelper;
   }
 
-  public ContactHelper getContactHelper() {
-    return contactHelper;
+  public UserHelper getUserHelper() {
+    return userHelper;
   }
 }
