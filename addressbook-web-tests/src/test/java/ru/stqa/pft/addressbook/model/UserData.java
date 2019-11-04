@@ -64,4 +64,31 @@ public class UserData {
   public String getNew_group() {
     return new_group;
   }
+
+  @Override
+  public String toString() {
+    return "UserData{" + "firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", email='" + email + '\'' + ", mobile='" + mobile + '\'' + '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    UserData userData = (UserData) o;
+
+    if (firstname != null ? !firstname.equals(userData.firstname) : userData.firstname != null) return false;
+    if (lastname != null ? !lastname.equals(userData.lastname) : userData.lastname != null) return false;
+    if (email != null ? !email.equals(userData.email) : userData.email != null) return false;
+    return mobile != null ? mobile.equals(userData.mobile) : userData.mobile == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = firstname != null ? firstname.hashCode() : 0;
+    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+    result = 31 * result + (email != null ? email.hashCode() : 0);
+    result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
+    return result;
+  }
 }
