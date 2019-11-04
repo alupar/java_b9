@@ -25,9 +25,6 @@ public class BaseHelper {
     }
   }
 
-  public void selectCheckbox() {
-    click(By.name("selected[]"));
-  }
 
   private boolean isAlertPresent() {
     try {

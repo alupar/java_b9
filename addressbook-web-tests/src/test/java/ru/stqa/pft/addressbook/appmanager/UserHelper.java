@@ -60,6 +60,10 @@ public class UserHelper extends BaseHelper {
     return isElementPresent(By.name("selected[]"));
   }
 
+  public void selectUser(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+  }
+
   public void createUser(UserData user, boolean creation) {
     initUserCreation();
     fillUserForm(user, creation);

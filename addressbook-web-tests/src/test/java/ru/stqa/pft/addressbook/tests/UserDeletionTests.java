@@ -13,7 +13,7 @@ public class UserDeletionTests extends TestBase {
       app.getUserHelper().createUser(new UserData("Сергей1", "Иванович", "Иванов", "ivanov", "work", "lol@lol.ru", "test@test.ru", "localhost", "+79991112233", "test321"), true);
       app.getNavigationHelper().goHomePage();
     }
-    app.getUserHelper().selectCheckbox();
+    app.getUserHelper().selectUser(before - 1);
     app.getUserHelper().deleteSelectedUsers();
     app.getUserHelper().CloseAlert();
     app.getNavigationHelper().goHomePage();
