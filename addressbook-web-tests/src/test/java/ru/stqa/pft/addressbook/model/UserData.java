@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 public class UserData {
+  private int id;
   private final String firstname;
   private final String middlename;
   private final String lastname;
@@ -13,6 +14,7 @@ public class UserData {
   private final String new_group;
 
   public UserData(String firstname, String middlename, String lastname, String nickname, String company, String email, String email2, String homepage, String mobile, String new_group) {
+    this.id = Integer.MAX_VALUE;
     this.firstname = firstname;
     this.middlename = middlename;
     this.lastname = lastname;
@@ -25,6 +27,27 @@ public class UserData {
     this.new_group = new_group;
   }
 
+  public UserData(int id, String firstname, String middlename, String lastname, String nickname, String company, String email, String email2, String homepage, String mobile, String new_group) {
+    this.id = id;
+    this.firstname = firstname;
+    this.middlename = middlename;
+    this.lastname = lastname;
+    this.nickname = nickname;
+    this.company = company;
+    this.email = email;
+    this.email2 = email2;
+    this.homepage = homepage;
+    this.mobile = mobile;
+    this.new_group = new_group;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
   public String getFirstname() {
     return firstname;
   }
@@ -67,7 +90,7 @@ public class UserData {
 
   @Override
   public String toString() {
-    return "UserData{" + "firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", email='" + email + '\'' + ", mobile='" + mobile + '\'' + '}';
+    return "UserData{" + "id=" + id + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", email='" + email + '\'' + ", mobile='" + mobile + '\'' + '}';
   }
 
   @Override
@@ -78,17 +101,13 @@ public class UserData {
     UserData userData = (UserData) o;
 
     if (firstname != null ? !firstname.equals(userData.firstname) : userData.firstname != null) return false;
-    if (lastname != null ? !lastname.equals(userData.lastname) : userData.lastname != null) return false;
-    if (email != null ? !email.equals(userData.email) : userData.email != null) return false;
-    return mobile != null ? mobile.equals(userData.mobile) : userData.mobile == null;
+    return lastname != null ? lastname.equals(userData.lastname) : userData.lastname == null;
   }
 
   @Override
   public int hashCode() {
     int result = firstname != null ? firstname.hashCode() : 0;
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-    result = 31 * result + (email != null ? email.hashCode() : 0);
-    result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
     return result;
   }
 }

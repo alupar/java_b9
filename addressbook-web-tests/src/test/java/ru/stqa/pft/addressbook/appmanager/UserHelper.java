@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.UserData;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,22 +73,19 @@ public class UserHelper extends BaseHelper {
     submitUserCreation();
   }
 
-  public void editUser(UserData user, boolean creation) {
-    initUserModification();
-    fillUserForm(user, creation);
-    submitUserModification();
-  }
-
   public int getUserCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
   public List<UserData> getUserList() {
-    List<UserData> users = new ArrayList<>();
+    List<UserData> users = new ArrayList<UserData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
-      String name = element.getText();
-      UserData user = new UserData("Сергей1", "Иванович", "Иванов", "ivanov", "work", "lol@lol.ru", "test@test.ru", "localhost", "+79991112233", null);
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      String firstname = cells.get(2).getText();
+      String lastname = cells.get(1).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+      UserData user = new UserData(id, firstname, null,lastname,null,null,null,null,null, null,null);
       users.add(user);
     }
     return users;
