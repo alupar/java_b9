@@ -16,7 +16,6 @@ public class UserModificationTests extends TestBase {
       app.getNavigationHelper().goHomePage();
     }
     List<UserData> before = app.getUserHelper().getUserList();
-    app.getUserHelper().selectUser(before.size() - 1);
     app.getUserHelper().initUserModification();
     UserData user = new UserData(before.get(before.size() - 1).getId(),"Пётр", "Петрович", "Петров", "petrov", "home", "ololo@lolo.ru", "test@test.ru", "https://google.com", "+74441142434",null);
     app.getUserHelper().fillUserForm(user, false);
