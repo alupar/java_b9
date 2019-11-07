@@ -43,8 +43,8 @@ public class UserHelper extends BaseHelper {
     click(By.linkText("add new"));
   }
 
-  public void initUserModification() {
-    click(By.xpath("//img[@alt='Edit']"));
+  public void initUserModification(int index) {
+    click(By.xpath("//a[@href='edit.php?id=" + index + "']"));
   }
 
   public void submitUserModification() {

@@ -2,7 +2,6 @@ package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.UserData;
 
 import java.util.Comparator;
@@ -12,6 +11,7 @@ public class UserCreationTests extends TestBase {
 
   @Test
   public void testUserCreation() {
+    app.getNavigationHelper().goHomePage();
     List<UserData> before = app.getUserHelper().getUserList();
     UserData user = new UserData("Пётр", "Иванович", "Петров", "petrov", "work", "lol@lol.ru", "test@test.ru", "localhost", "+79991112233", "test321");
     app.getUserHelper().createUser(user, true);
