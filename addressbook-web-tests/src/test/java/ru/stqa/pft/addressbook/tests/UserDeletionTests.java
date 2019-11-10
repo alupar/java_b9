@@ -11,16 +11,16 @@ public class UserDeletionTests extends TestBase {
 
   @Test
   public void testUserDeletion() {
-    app.getNavigationHelper().goHomePage();
+    app.goTo().goHomePage();
     if (!app.getUserHelper().isThereAUser()) {
       app.getUserHelper().createUser(new UserData("Сергей1", "Иванович", "Иванов", "ivanov", "work", "lol@lol.ru", "test@test.ru", "localhost", "+79991112233", "test321"), true);
-      app.getNavigationHelper().goHomePage();
+      app.goTo().goHomePage();
     }
     List<UserData> before = app.getUserHelper().getUserList();
     app.getUserHelper().selectUser(before.size() - 1);
     app.getUserHelper().deleteSelectedUsers();
     app.getUserHelper().CloseAlert();
-    app.getNavigationHelper().goHomePage();
+    app.goTo().goHomePage();
     List<UserData> after = app.getUserHelper().getUserList();
     Assert.assertEquals(after.size(), before.size() - 1);
     before.remove(before.size() - 1);
