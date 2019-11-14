@@ -6,8 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.UserData;
-import java.util.ArrayList;
+import ru.stqa.pft.addressbook.model.Users;
+
 import java.util.List;
+import java.util.Set;
 
 public class UserHelper extends BaseHelper {
 
@@ -63,30 +65,41 @@ public class UserHelper extends BaseHelper {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public void selectUser(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectUserById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
-  public void createUser(UserData user, boolean creation) {
+  public void create(UserData user, boolean creation) {
     initUserCreation();
     fillUserForm(user, creation);
     submitUserCreation();
+  }
+
+  public void delete(UserData userData) {
+    selectUserById(userData.getId());
+    deleteSelectedUsers();
+    CloseAlert();
+  }
+
+  public void modify(Set<UserData> before, UserData user) {
+    initUserModification(user.getId());
+    fillUserForm(user, false);
+    submitUserModification();
   }
 
   public int getUserCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<UserData> getUserList() {
-    List<UserData> users = new ArrayList<UserData>();
+  public Users all() {
+    Users users = new Users();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       String firstname = cells.get(2).getText();
       String lastname = cells.get(1).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-      UserData user = new UserData(id, firstname, null,lastname,null,null,null,null,null, null,null);
-      users.add(user);
+      users.add(new UserData().withId(id).withFirstname(firstname).withLastname(lastname));
     }
     return users;
   }

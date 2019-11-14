@@ -40,7 +40,6 @@ public class ApplicationManager {
     sessionHelper.login("admin", "secret");
   }
 
-
   public void stop() {
     sessionHelper.logout();
     wd.quit();
@@ -55,7 +54,6 @@ public class ApplicationManager {
     }
   }
 
-
   public GroupHelper group() {
     return groupHelper;
   }
@@ -64,7 +62,7 @@ public class ApplicationManager {
     return navigationHelper;
   }
 
-  public UserHelper getUserHelper() {
+  public UserHelper user() {
     return userHelper;
   }
 }

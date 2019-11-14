@@ -1,53 +1,77 @@
 package ru.stqa.pft.addressbook.model;
 
 public class UserData {
-  private int id;
-  private final String firstname;
-  private final String middlename;
-  private final String lastname;
-  private final String nickname;
-  private final String company;
-  private final String email;
-  private final String email2;
-  private final String homepage;
-  private final String mobile;
-  private final String new_group;
+  private int id = Integer.MAX_VALUE;
+  private String firstname;
+  private String middlename;
+  private String lastname;
+  private String nickname;
+  private String company;
+  private String email;
+  private String email2;
+  private String homepage;
+  private String mobile;
+  private String new_group;
 
-  public UserData(String firstname, String middlename, String lastname, String nickname, String company, String email, String email2, String homepage, String mobile, String new_group) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.middlename = middlename;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.company = company;
-    this.email = email;
-    this.email2 = email2;
-    this.homepage = homepage;
-    this.mobile = mobile;
-    this.new_group = new_group;
+  public UserData withId(int id) {
+    this.id = id;
+    return this;
   }
 
-  public UserData(int id, String firstname, String middlename, String lastname, String nickname, String company, String email, String email2, String homepage, String mobile, String new_group) {
-    this.id = id;
+  public UserData withFirstname(String firstname) {
     this.firstname = firstname;
+    return this;
+  }
+
+  public UserData withMiddlename(String middlename) {
     this.middlename = middlename;
+    return this;
+  }
+
+  public UserData withLastname(String lastname) {
     this.lastname = lastname;
+    return this;
+  }
+
+  public UserData withNickname(String nickname) {
     this.nickname = nickname;
+    return this;
+  }
+
+  public UserData withCompany(String company) {
     this.company = company;
+    return this;
+  }
+
+  public UserData withEmail(String email) {
     this.email = email;
+    return this;
+  }
+
+  public UserData withEmail2(String email2) {
     this.email2 = email2;
+    return this;
+  }
+
+  public UserData withHomepage(String homepage) {
     this.homepage = homepage;
+    return this;
+  }
+
+  public UserData withMobile(String mobile) {
     this.mobile = mobile;
+    return this;
+  }
+
+  public UserData withNew_group(String new_group) {
     this.new_group = new_group;
+    return this;
   }
 
   public int getId() {
     return id;
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
   public String getFirstname() {
     return firstname;
   }
@@ -100,13 +124,15 @@ public class UserData {
 
     UserData userData = (UserData) o;
 
+    if (id != userData.id) return false;
     if (firstname != null ? !firstname.equals(userData.firstname) : userData.firstname != null) return false;
     return lastname != null ? lastname.equals(userData.lastname) : userData.lastname == null;
   }
 
   @Override
   public int hashCode() {
-    int result = firstname != null ? firstname.hashCode() : 0;
+    int result = id;
+    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
   }

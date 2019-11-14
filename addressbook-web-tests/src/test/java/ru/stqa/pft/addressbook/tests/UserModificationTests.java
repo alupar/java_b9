@@ -1,35 +1,36 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
+import ru.stqa.pft.addressbook.model.Users;
 
-import java.util.Comparator;
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class UserModificationTests extends TestBase {
+  @BeforeMethod
+  public void ensurePreconditions() {
+    app.goTo().userPage();
+    if (app.user().all().size() == 0) {
+      app.user().create(new UserData().withFirstname("Сергей1").withMiddlename("Иванович").withLastname("Иванов").withNickname("ivanov").withCompany("Home").withEmail("lol@lol.ru").withEmail2("test@test.ru").withHomepage("localhost").withMobile("+79991112234").withNew_group("test321"), true);
+      app.goTo().userPage();
+    }
+  }
 
   @Test
   public void testUserModification() {
-    app.goTo().goHomePage();
-    if (!app.getUserHelper().isThereAUser()) {
-      app.getUserHelper().createUser(new UserData("Иван", "Иванович", "Иванов", "ivanov", "work", "lolo@lol.ru", "test@test.ru", "https://ya.ru", "+79991112233", "test321"), true);
-      app.goTo().goHomePage();
-    }
-    List<UserData> before = app.getUserHelper().getUserList();
-    app.getUserHelper().initUserModification(before.get(before.size() - 1).getId());
-    UserData user = new UserData(before.get(before.size() - 1).getId(), "Пётр", "Петрович", "Петров", "petrov", "home", "ololo@lolo.ru", "test@test.ru", "https://google.com", "+74441142434", null);
-    app.getUserHelper().fillUserForm(user, false);
-    app.getUserHelper().submitUserModification();
-    app.goTo().goHomePage();
-    List<UserData> after = app.getUserHelper().getUserList();
-    Assert.assertEquals(after.size(), before.size());
+    Users before = app.user().all();
+    UserData modifiedUser = before.iterator().next();
+    UserData user = new UserData().withId(modifiedUser.getId()).withFirstname("Сергей1").withMiddlename("Иванович").withLastname("Иванов").withNickname("ivanov").withCompany("Home").withEmail("lol@lol.ru").withEmail2("test@test.ru").withHomepage("localhost").withMobile("+79991112234").withNew_group(null);
 
-    before.remove(before.size() - 1);
-    before.add(user);
-    Comparator<? super UserData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-    before.sort(byId);
-    after.sort(byId);
-    Assert.assertEquals(before, after);
+    app.user().modify(before, user);
+    app.goTo().userPage();
+    Users after = app.user().all();
+    Assert.assertEquals(after.size(), before.size());
+    assertThat(after, equalTo(before.without(modifiedUser).withAdded(user)));
   }
+
+
 }
