@@ -9,12 +9,23 @@ public class UserData {
   private String company;
   private String email;
   private String email2;
+  private String email3;
   private String homepage;
   private String mobile;
   private String workPhone;
   private String homePhone;
   private String allPhones;
+  private String allEmails;
   private String new_group;
+
+  public String getAllEmails() {
+    return allEmails;
+  }
+
+  public UserData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
 
   public String getAllPhones() {
     return allPhones;
@@ -62,6 +73,11 @@ public class UserData {
 
   public UserData withEmail2(String email2) {
     this.email2 = email2;
+    return this;
+  }
+
+  public UserData withEmail3(String email3) {
+    this.email3 = email3;
     return this;
   }
 
@@ -120,6 +136,9 @@ public class UserData {
 
   public String getEmail2() {
     return email2;
+  }
+  public String getEmail3() {
+    return email3;
   }
 
   public String getHomepage() {

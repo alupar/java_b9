@@ -30,6 +30,7 @@ public class UserHelper extends BaseHelper {
     type(By.name("company"), userData.getCompany());
     type(By.name("email"), userData.getEmail());
     type(By.name("email2"), userData.getEmail2());
+    type(By.name("email3"), userData.getEmail3());
     type(By.name("homepage"), userData.getHomepage());
     type(By.name("mobile"), userData.getMobile());
     type(By.name("work"), userData.getWorkPhone());
@@ -99,11 +100,10 @@ public class UserHelper extends BaseHelper {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       String firstname = cells.get(2).getText();
       String lastname = cells.get(1).getText();
-      String allPhones=cells.get(5).getText();
-      String[] phones = cells.get(5).getText().split("\n");
+      String allEmails = cells.get(4).getText();
+      String allPhones = cells.get(5).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-      users.add(new UserData().withId(id).withFirstname(firstname).withLastname(lastname)
-              .withAllPhones(allPhones));
+      users.add(new UserData().withId(id).withFirstname(firstname).withLastname(lastname).withAllEmails(allEmails).withAllPhones(allPhones));
     }
     return users;
   }
@@ -115,7 +115,10 @@ public class UserHelper extends BaseHelper {
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
+    String email = wd.findElement(By.name("email")).getAttribute("value");
+    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
-    return new UserData().withId(user.getId()).withFirstname(firstname).withLastname(lastname).withHomePhone(home).withMobile(mobile).withWorkPhone(work);
+    return new UserData().withId(user.getId()).withFirstname(firstname).withLastname(lastname).withHomePhone(home).withMobile(mobile).withWorkPhone(work).withEmail(email).withEmail2(email2).withEmail3(email3);
   }
 }
