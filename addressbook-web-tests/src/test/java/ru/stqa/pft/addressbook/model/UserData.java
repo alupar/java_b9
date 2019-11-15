@@ -11,7 +11,18 @@ public class UserData {
   private String email2;
   private String homepage;
   private String mobile;
+  private String homePhone;
+  private String workPhone;
   private String new_group;
+
+  public UserData withHomePhone(String home) {
+    this.homePhone = homePhone;
+    return this;
+  }
+  public UserData withWorkPhone(String work) {
+    this.workPhone = workPhone;
+    return this;
+  }
 
   public UserData withId(int id) {
     this.id = id;
@@ -107,6 +118,15 @@ public class UserData {
   public String getMobile() {
     return mobile;
   }
+
+  public String getHomePhone() {
+    return homePhone;
+  }
+
+  public String getWorkPhone() {
+    return workPhone;
+  }
+
 
   public String getNew_group() {
     return new_group;

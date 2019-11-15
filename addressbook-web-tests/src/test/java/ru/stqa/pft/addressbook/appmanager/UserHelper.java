@@ -45,8 +45,8 @@ public class UserHelper extends BaseHelper {
     click(By.linkText("add new"));
   }
 
-  public void initUserModification(int index) {
-    click(By.xpath("//a[@href='edit.php?id=" + index + "']"));
+  public void initUserModificationById(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id))).click();
   }
 
   public void submitUserModification() {
@@ -82,7 +82,7 @@ public class UserHelper extends BaseHelper {
   }
 
   public void modify(Set<UserData> before, UserData user) {
-    initUserModification(user.getId());
+    initUserModificationById(user.getId());
     fillUserForm(user, false);
     submitUserModification();
   }
@@ -102,5 +102,17 @@ public class UserHelper extends BaseHelper {
       users.add(new UserData().withId(id).withFirstname(firstname).withLastname(lastname));
     }
     return users;
+  }
+
+  public UserData infoFromEditForm(UserData user) {
+    initUserModificationById(user.getId());
+    String firstname=wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname=wd.findElement(By.name("lastname")).getAttribute("value");
+    String home=wd.findElement(By.name("home")).getAttribute("value");
+    String mobile=wd.findElement(By.name("mobile")).getAttribute("value");
+    String work=wd.findElement(By.name("work")).getAttribute("value");
+wd.navigate().back();
+return new UserData().withId(user.getId()).withFirstname(firstname)
+        .withLastname(lastname).withHomePhone(home).withMobile(mobile).withWorkPhone(work);
   }
 }
