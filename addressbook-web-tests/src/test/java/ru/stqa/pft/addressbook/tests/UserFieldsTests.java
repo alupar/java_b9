@@ -39,6 +39,15 @@ public class UserFieldsTests extends TestBase {
     assertThat(user.getAllEmails(), equalTo(mergeEmails(userInfoFromEditForm)));
   }
 
+  @Test
+  public void testUserAddress() {
+    app.goTo().userPage();
+    UserData user = app.user().all().iterator().next();
+    UserData userInfoFromEditForm = app.user().infoFromEditForm(user);
+
+    assertThat(user.getAddress(), equalTo(userInfoFromEditForm.getAddress()));
+  }
+
   private String mergePhones(UserData user) {
     return Arrays.asList(user.getHomePhone(), user.getMobile(), user.getWorkPhone()).stream().filter((s) -> !s.equals("")).map(UserFieldsTests::cleaned).collect(Collectors.joining("\n"));
   }

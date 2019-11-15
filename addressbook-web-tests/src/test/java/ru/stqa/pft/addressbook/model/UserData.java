@@ -7,6 +7,7 @@ public class UserData {
   private String lastname;
   private String nickname;
   private String company;
+  private String address;
   private String email;
   private String email2;
   private String email3;
@@ -17,6 +18,16 @@ public class UserData {
   private String allPhones;
   private String allEmails;
   private String new_group;
+
+
+  public String getAddress() {
+    return address;
+  }
+
+  public UserData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
 
   public String getAllEmails() {
     return allEmails;
@@ -137,6 +148,7 @@ public class UserData {
   public String getEmail2() {
     return email2;
   }
+
   public String getEmail3() {
     return email3;
   }
@@ -164,7 +176,7 @@ public class UserData {
 
   @Override
   public String toString() {
-    return "UserData{" + "id=" + id + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", company='" + company + '\'' + ", mobile='" + mobile + '\'' + ", homePhone='" + homePhone + '\'' + ", workPhone='" + workPhone + '\'' + ", new_group='" + new_group + '\'' + '}';
+    return "UserData{" + "id=" + id + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", nickname='" + nickname + '\'' + ", company='" + company + '\'' + ", address='" + address + '\'' + ", email='" + email + '\'' + ", email2='" + email2 + '\'' + ", email3='" + email3 + '\'' + ", mobile='" + mobile + '\'' + ", workPhone='" + workPhone + '\'' + ", homePhone='" + homePhone + '\'' + '}';
   }
 
   @Override
