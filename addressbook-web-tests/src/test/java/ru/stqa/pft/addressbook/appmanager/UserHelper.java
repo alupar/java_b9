@@ -99,9 +99,11 @@ public class UserHelper extends BaseHelper {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       String firstname = cells.get(2).getText();
       String lastname = cells.get(1).getText();
+      String allPhones=cells.get(5).getText();
       String[] phones = cells.get(5).getText().split("\n");
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-      users.add(new UserData().withId(id).withFirstname(firstname).withLastname(lastname).withHomePhone(phones[0]).withMobile(phones[1]).withWorkPhone(phones[2]));
+      users.add(new UserData().withId(id).withFirstname(firstname).withLastname(lastname)
+              .withAllPhones(allPhones));
     }
     return users;
   }

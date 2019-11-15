@@ -13,8 +13,17 @@ public class UserData {
   private String mobile;
   private String workPhone;
   private String homePhone;
+  private String allPhones;
   private String new_group;
 
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public UserData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
 
   public UserData withId(int id) {
     this.id = id;

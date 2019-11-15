@@ -4,8 +4,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 
 public class UserPhoneTests extends TestBase {
@@ -23,13 +23,13 @@ public class UserPhoneTests extends TestBase {
     app.goTo().userPage();
     UserData user = app.user().all().iterator().next();
     UserData userInfoFromEditForm = app.user().infoFromEditForm(user);
-
-    assertThat(user.getHomePhone(), equalTo(cleaned(userInfoFromEditForm.getHomePhone())));
-    assertThat(user.getWorkPhone(), equalTo(cleaned(userInfoFromEditForm.getWorkPhone())));
-    assertThat(user.getMobile(), equalTo(cleaned(userInfoFromEditForm.getMobile())));
   }
 
-  public String cleaned(String phone) {
+  private String mergePhones(UserData user) {
+    return Arrays.asList(user.getHomePhone(), user.getMobile(), user.getWorkPhone()).stream().filter((s) -> !s.equals("")).map(UserPhoneTests::cleaned).collect(Collectors.joining("\n"));
+  }
+
+  public static String cleaned(String phone) {
     return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
   }
 }
