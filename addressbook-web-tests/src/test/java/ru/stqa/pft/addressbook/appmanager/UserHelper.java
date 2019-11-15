@@ -46,7 +46,7 @@ public class UserHelper extends BaseHelper {
   }
 
   public void initUserModificationById(int id) {
-    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id))).click();
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
 
   public void submitUserModification() {
@@ -98,21 +98,22 @@ public class UserHelper extends BaseHelper {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       String firstname = cells.get(2).getText();
       String lastname = cells.get(1).getText();
+      String[] phones = cells.get(5).getText().split("\n");
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-      users.add(new UserData().withId(id).withFirstname(firstname).withLastname(lastname));
+      users.add(new UserData().withId(id).withFirstname(firstname).withLastname(lastname)
+              .withHomePhone(phones[0]).withMobile(phones[1]).withWorkPhone(phones[2]));
     }
     return users;
   }
 
   public UserData infoFromEditForm(UserData user) {
     initUserModificationById(user.getId());
-    String firstname=wd.findElement(By.name("firstname")).getAttribute("value");
-    String lastname=wd.findElement(By.name("lastname")).getAttribute("value");
-    String home=wd.findElement(By.name("home")).getAttribute("value");
-    String mobile=wd.findElement(By.name("mobile")).getAttribute("value");
-    String work=wd.findElement(By.name("work")).getAttribute("value");
-wd.navigate().back();
-return new UserData().withId(user.getId()).withFirstname(firstname)
-        .withLastname(lastname).withHomePhone(home).withMobile(mobile).withWorkPhone(work);
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    wd.navigate().back();
+    return new UserData().withId(user.getId()).withFirstname(firstname).withLastname(lastname).withHomePhone(home).withMobile(mobile).withWorkPhone(work);
   }
 }
