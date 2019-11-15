@@ -32,7 +32,8 @@ public class UserHelper extends BaseHelper {
     type(By.name("email2"), userData.getEmail2());
     type(By.name("homepage"), userData.getHomepage());
     type(By.name("mobile"), userData.getMobile());
-    click(By.name("work"));
+    type(By.name("work"), userData.getWorkPhone());
+    type(By.name("home"), userData.getHomePhone());
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getNew_group());
     } else {
@@ -100,8 +101,7 @@ public class UserHelper extends BaseHelper {
       String lastname = cells.get(1).getText();
       String[] phones = cells.get(5).getText().split("\n");
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-      users.add(new UserData().withId(id).withFirstname(firstname).withLastname(lastname)
-              .withHomePhone(phones[0]).withMobile(phones[1]).withWorkPhone(phones[2]));
+      users.add(new UserData().withId(id).withFirstname(firstname).withLastname(lastname).withHomePhone(phones[0]).withMobile(phones[1]).withWorkPhone(phones[2]));
     }
     return users;
   }

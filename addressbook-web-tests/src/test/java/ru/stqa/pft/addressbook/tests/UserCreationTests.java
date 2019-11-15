@@ -18,7 +18,7 @@ public class UserCreationTests extends TestBase {
   @Test
   public void testUserCreation() {
     Users before = app.user().all();
-    UserData user = new UserData().withFirstname("Пётр").withMiddlename("Иванович").withLastname("Петров").withNickname("petrov").withCompany("work").withEmail("lol@lol.ru").withEmail2("test@test.ru").withHomepage("localhost").withMobile("+79991112233").withNew_group("test2");
+    UserData user = new UserData().withFirstname("Пётр").withMiddlename("Иванович").withLastname("Петров").withNickname("petrov").withCompany("work").withEmail("lol@lol.ru").withEmail2("test@test.ru").withHomepage("localhost").withMobile("+7(999)1112233").withHomePhone("+79991112233").withWorkPhone("7-999-1112233").withNew_group("test2");
     app.user().create(user, true);
     app.goTo().userPage();
     Users after = app.user().all();

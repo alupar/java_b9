@@ -11,19 +11,10 @@ public class UserData {
   private String email2;
   private String homepage;
   private String mobile;
-  private String homePhone;
   private String workPhone;
+  private String homePhone;
   private String new_group;
 
-  public UserData withHomePhone(String home) {
-    this.homePhone = homePhone;
-    return this;
-  }
-
-  public UserData withWorkPhone(String work) {
-    this.workPhone = workPhone;
-    return this;
-  }
 
   public UserData withId(int id) {
     this.id = id;
@@ -72,6 +63,16 @@ public class UserData {
 
   public UserData withMobile(String mobile) {
     this.mobile = mobile;
+    return this;
+  }
+
+  public UserData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+
+  public UserData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
     return this;
   }
 
@@ -135,7 +136,7 @@ public class UserData {
 
   @Override
   public String toString() {
-    return "UserData{" + "id=" + id + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", email='" + email + '\'' + ", mobile='" + mobile + '\'' + '}';
+    return "UserData{" + "id=" + id + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", company='" + company + '\'' + ", mobile='" + mobile + '\'' + ", homePhone='" + homePhone + '\'' + ", workPhone='" + workPhone + '\'' + ", new_group='" + new_group + '\'' + '}';
   }
 
   @Override
