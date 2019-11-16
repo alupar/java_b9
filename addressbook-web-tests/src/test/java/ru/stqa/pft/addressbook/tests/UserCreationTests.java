@@ -1,27 +1,38 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class UserCreationTests extends TestBase {
 
+  @DataProvider
+  public Iterator<Object[]> validUsers() {
+    List<Object[]> list = new ArrayList<Object[]>();
+    list.add(new Object[]{new UserData().withFirstname("Игорь").withLastname("Кукушкин").withMobile("89090525011").withNew_group("test321")});
+    list.add(new Object[]{new UserData().withFirstname("Игорь2").withLastname("Кукушкин 2").withMobile("89090525012").withNew_group("test321")});
+    list.add(new Object[]{new UserData().withFirstname("Игорь3").withLastname("Кукушкин 3").withMobile("89090525013").withNew_group("test321")});
+    return list.iterator();
+  }
+
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().userPage();
   }
 
-  @Test
-  public void testUserCreation() {
+  @Test(dataProvider = "validUsers")
+  public void testUserCreation(UserData user) {
     Users before = app.user().all();
-    File photo=new File("src/test/resources/murmur.jpg");
-    UserData user = new UserData().withFirstname("Пётр").withMiddlename("Иванович").withLastname("Петров").withNickname("petrov").withCompany("work").withEmail("lol@lol.ru").withEmail2("test@test.ru").withHomepage("localhost").withMobile("+7(999)1112233").withHomePhone("+79991112233").withWorkPhone("7-999-1112233").withNew_group("test2").withPhoto(photo);
+    //File photo=new File("src/test/resources/murmur.jpg");
     app.user().create(user, true);
     app.goTo().userPage();
     Users after = app.user().all();

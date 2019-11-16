@@ -187,7 +187,7 @@ public class UserData {
 
   @Override
   public String toString() {
-    return "UserData{" + "id=" + id + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", nickname='" + nickname + '\'' + ", company='" + company + '\'' + ", address='" + address + '\'' + ", email='" + email + '\'' + ", email2='" + email2 + '\'' + ", email3='" + email3 + '\'' + ", mobile='" + mobile + '\'' + ", workPhone='" + workPhone + '\'' + ", homePhone='" + homePhone + '\'' + '}';
+    return "UserData{" + "id=" + id + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", mobile='" + mobile + '\'' + '}';
   }
 
   @Override
