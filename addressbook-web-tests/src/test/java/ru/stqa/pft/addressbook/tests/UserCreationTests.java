@@ -5,6 +5,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -18,7 +20,8 @@ public class UserCreationTests extends TestBase {
   @Test
   public void testUserCreation() {
     Users before = app.user().all();
-    UserData user = new UserData().withFirstname("Пётр").withMiddlename("Иванович").withLastname("Петров").withNickname("petrov").withCompany("work").withEmail("lol@lol.ru").withEmail2("test@test.ru").withHomepage("localhost").withMobile("+7(999)1112233").withHomePhone("+79991112233").withWorkPhone("7-999-1112233").withNew_group("test2");
+    File photo=new File("src/test/resources/murmur.jpg");
+    UserData user = new UserData().withFirstname("Пётр").withMiddlename("Иванович").withLastname("Петров").withNickname("petrov").withCompany("work").withEmail("lol@lol.ru").withEmail2("test@test.ru").withHomepage("localhost").withMobile("+7(999)1112233").withHomePhone("+79991112233").withWorkPhone("7-999-1112233").withNew_group("test2").withPhoto(photo);
     app.user().create(user, true);
     app.goTo().userPage();
     Users after = app.user().all();

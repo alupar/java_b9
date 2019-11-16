@@ -36,6 +36,7 @@ public class UserHelper extends BaseHelper {
     type(By.name("mobile"), userData.getMobile());
     type(By.name("work"), userData.getWorkPhone());
     type(By.name("home"), userData.getHomePhone());
+    attach(By.name("photo"), userData.getPhoto());
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getNew_group());
     } else {
