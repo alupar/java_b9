@@ -39,7 +39,7 @@ public class UserDataGenerator {
     for (int i=0; i < count; i++) {
       users.add(new UserData().withFirstname(String.format("Имя %s", i))
               .withLastname(String.format("Фамилия %s", i))
-              .withMobile(String.format("моб.телефон 8909%s", i)));
+              .withMobile(String.format("моб.телефон 8909%s", i)).withNew_group("test321"));
     }
     return users;
   }
@@ -47,7 +47,7 @@ public class UserDataGenerator {
   private static void save(List<UserData> users, File file) throws IOException {
     Writer writer = new FileWriter(file);
     for (UserData user:users){
-      writer.write(String.format("%s;%s;%s\n",user.getFirstname(), user.getLastname(),user.getMobile()));
+      writer.write(String.format("%s;%s;%s;%s\n",user.getFirstname(), user.getLastname(),user.getMobile(), user.getNew_group()));
     }
     writer.close();
   }

@@ -6,9 +6,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,11 +15,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class UserCreationTests extends TestBase {
 
   @DataProvider
-  public Iterator<Object[]> validUsers() {
+  public Iterator<Object[]> validUsers() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    list.add(new Object[]{new UserData().withFirstname("Игорь").withLastname("Кукушкин").withMobile("89090525011").withNew_group("test321")});
-    list.add(new Object[]{new UserData().withFirstname("Игорь2").withLastname("Кукушкин 2").withMobile("89090525012").withNew_group("test321")});
-    list.add(new Object[]{new UserData().withFirstname("Игорь3").withLastname("Кукушкин 3").withMobile("89090525013").withNew_group("test321")});
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/users.csv")));
+    String line = reader.readLine();
+    while (line != null) {
+      String[] split = line.split(";");
+      list.add(new Object[]{new UserData().withFirstname(split[0]).withLastname(split[1]).withMobile(split[2]).withNew_group(split[3])});
+      line = reader.readLine();
+    }
     return list.iterator();
   }
 
