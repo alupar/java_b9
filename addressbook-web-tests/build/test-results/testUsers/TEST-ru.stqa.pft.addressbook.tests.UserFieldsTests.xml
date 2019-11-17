@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.UserFieldsTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2019-11-17T08:56:28" hostname="Comp-PC" time="8.555">
+  <properties/>
+  <testcase name="testUserAddress" classname="ru.stqa.pft.addressbook.tests.UserFieldsTests" time="1.831"/>
+  <testcase name="testUserEmails" classname="ru.stqa.pft.addressbook.tests.UserFieldsTests" time="1.705"/>
+  <testcase name="testUserPhones" classname="ru.stqa.pft.addressbook.tests.UserFieldsTests" time="1.663"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
