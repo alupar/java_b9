@@ -1,12 +1,12 @@
 <list>
-    <group>
-        <name>Группа 0</name>
-        <header>Заголовок 0</header>
-        <footer>футер 0</footer>
-    </group>
-    <group>
-        <name>Группа 1</name>
-        <header>Заголовок 1</header>
-        <footer>футер 1</footer>
-    </group>
+  <group>
+    <name>Группа 0</name>
+    <header>Заголовок 0</header>
+    <footer>футер 0</footer>
+  </group>
+  <group>
+    <name>Группа 1</name>
+    <header>Заголовок 1</header>
+    <footer>футер 1</footer>
+  </group>
 </list>

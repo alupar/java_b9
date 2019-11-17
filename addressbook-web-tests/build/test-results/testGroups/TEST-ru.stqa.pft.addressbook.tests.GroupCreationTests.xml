@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.GroupCreationTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2019-11-17T07:34:32" hostname="Comp-PC" time="8.923">
+  <properties/>
+  <testcase name="testBadGroupCreation" classname="ru.stqa.pft.addressbook.tests.GroupCreationTests" time="2.934"/>
+  <testcase name="testGroupCreation[0](GroupData{id='0', name='Р“СЂСѓРїРїР° 0'})" classname="ru.stqa.pft.addressbook.tests.GroupCreationTests" time="3.231"/>
+  <testcase name="testGroupCreation[1](GroupData{id='0', name='Р“СЂСѓРїРїР° 1'})" classname="ru.stqa.pft.addressbook.tests.GroupCreationTests" time="2.426"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Security framework of XStream not initialized, XStream is probably vulnerable.
+]]></system-err>
+</testsuite>

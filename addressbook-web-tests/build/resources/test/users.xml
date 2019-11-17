@@ -1,0 +1,42 @@
+<list>
+  <users>
+    <id>2147483647</id>
+    <firstname>Имя 0</firstname>
+    <lastname>Фамилия 0</lastname>
+    <address>г. Москва, ул. 0-ая</address>
+    <email>test0@test0.com</email>
+    <email2>lol0@lol0.com</email2>
+    <mobile>моб.телефон 89090</mobile>
+    <new__group>test321</new__group>
+  </users>
+  <users>
+    <id>2147483647</id>
+    <firstname>Имя 1</firstname>
+    <lastname>Фамилия 1</lastname>
+    <address>г. Москва, ул. 1-ая</address>
+    <email>test1@test1.com</email>
+    <email2>lol1@lol1.com</email2>
+    <mobile>моб.телефон 89091</mobile>
+    <new__group>test321</new__group>
+  </users>
+  <users>
+    <id>2147483647</id>
+    <firstname>Имя 2</firstname>
+    <lastname>Фамилия 2</lastname>
+    <address>г. Москва, ул. 2-ая</address>
+    <email>test2@test2.com</email>
+    <email2>lol2@lol2.com</email2>
+    <mobile>моб.телефон 89092</mobile>
+    <new__group>test321</new__group>
+  </users>
+  <users>
+    <id>2147483647</id>
+    <firstname>Имя 3</firstname>
+    <lastname>Фамилия 3</lastname>
+    <address>г. Москва, ул. 3-ая</address>
+    <email>test3@test3.com</email>
+    <email2>lol3@lol3.com</email2>
+    <mobile>моб.телефон 89093</mobile>
+    <new__group>test321</new__group>
+  </users>
+</list>
