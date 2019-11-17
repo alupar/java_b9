@@ -6,8 +6,13 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,7 +26,7 @@ public class UserCreationTests extends TestBase {
     String line = reader.readLine();
     while (line != null) {
       String[] split = line.split(";");
-      list.add(new Object[]{new UserData().withFirstname(split[0]).withLastname(split[1]).withMobile(split[2]).withNew_group(split[3])});
+      list.add(new Object[]{new UserData().withFirstname(split[0]).withLastname(split[1]).withMobile(split[2]).withNew_group(split[3]).withAddress(split[4]).withEmail(split[5]).withEmail2(split[6])});
       line = reader.readLine();
     }
     return list.iterator();
