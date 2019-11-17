@@ -1,0 +1,29 @@
+[
+  {
+    "firstname": "Имя 0",
+    "lastname": "Фамилия 0",
+    "address": "г. Москва, ул. 0-ая",
+    "email": "test0@test0.com",
+    "email2": "lol0@lol0.com",
+    "mobile": "моб.телефон 89090",
+    "new_group": "test321"
+  },
+  {
+    "firstname": "Имя 1",
+    "lastname": "Фамилия 1",
+    "address": "г. Москва, ул. 1-ая",
+    "email": "test1@test1.com",
+    "email2": "lol1@lol1.com",
+    "mobile": "моб.телефон 89091",
+    "new_group": "test321"
+  },
+  {
+    "firstname": "Имя 2",
+    "lastname": "Фамилия 2",
+    "address": "г. Москва, ул. 2-ая",
+    "email": "test2@test2.com",
+    "email2": "lol2@lol2.com",
+    "mobile": "моб.телефон 89092",
+    "new_group": "test321"
+  }
+]
