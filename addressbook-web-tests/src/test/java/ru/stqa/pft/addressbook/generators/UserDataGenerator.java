@@ -51,18 +51,18 @@ public class UserDataGenerator {
   private void saveAsJson(List<UserData> users, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(users);
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(json);
+    }
   }
 
   private void saveAsXML(List<UserData> users, File file) throws IOException {
     XStream xstream = new XStream();
     xstream.alias("users", UserData.class);
     String xml = xstream.toXML(users);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(xml);
+    }
   }
 
   private static List<UserData> generateUsers(int count) {
@@ -74,10 +74,10 @@ public class UserDataGenerator {
   }
 
   private static void saveAsCSV(List<UserData> users, File file) throws IOException {
-    Writer writer = new FileWriter(file);
-    for (UserData user : users) {
-      writer.write(String.format("%s;%s;%s;%s;%s;%s;%s\n", user.getFirstname(), user.getLastname(), user.getMobile(), user.getNew_group(), user.getAddress(), user.getEmail(), user.getEmail2()));
+    try (Writer writer = new FileWriter(file)) {
+      for (UserData user : users) {
+        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s\n", user.getFirstname(), user.getLastname(), user.getMobile(), user.getNew_group(), user.getAddress(), user.getEmail(), user.getEmail2()));
+      }
     }
-    writer.close();
   }
 }
