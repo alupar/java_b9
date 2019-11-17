@@ -53,7 +53,7 @@ public class UserFieldsTests extends TestBase {
   }
 
   private String mergeEmails(UserData user) {
-    return Arrays.asList(user.getEmail(), user.getEmail2(), user.getEmail3()).stream().filter((s) -> !s.equals("")).map(UserFieldsTests::cleaned).collect(Collectors.joining("\n"));
+    return Arrays.asList(user.getEmail(), user.getEmail2(), user.getEmail3()).stream().filter((s) -> !s.equals("")).collect(Collectors.joining("\n"));
   }
 
   public static String cleaned(String phone) {
