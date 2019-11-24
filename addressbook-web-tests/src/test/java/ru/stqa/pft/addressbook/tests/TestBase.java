@@ -1,5 +1,11 @@
 package ru.stqa.pft.addressbook.tests;
-
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
+import java.util.stream.Collectors;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,5 +41,13 @@ public class TestBase {
   public void logTestStop(Method m, Object[] p) {
     logger.info("Stop test " + m.getName() + " with parameters" + Arrays.asList(p));
   }
-
+  public void verifyGroupListInUI() {
+    if (Boolean.getBoolean("verifyUI")) {
+      Groups dbGroups = app.db().groups();
+      Groups uiGroups = app.group().all();
+      assertThat(uiGroups, equalTo(dbGroups.stream()
+              .map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
+              .collect(Collectors.toSet())));
+    }
+  }
 }
