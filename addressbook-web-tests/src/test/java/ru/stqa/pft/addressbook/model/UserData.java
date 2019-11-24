@@ -7,6 +7,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("user")
 @Entity
@@ -48,9 +50,9 @@ public class UserData {
   private String allPhones;
   @Transient
   private String allEmails;
-  @Expose
-  @Transient
-  private String new_group;
+  //@Expose
+  //@Transient
+  //private String new_group;
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
@@ -156,11 +158,6 @@ public class UserData {
     return this;
   }
 
-  public UserData withNew_group(String new_group) {
-    this.new_group = new_group;
-    return this;
-  }
-
   public int getId() {
     return id;
   }
@@ -213,11 +210,17 @@ public class UserData {
     return workPhone;
   }
 
+  @ManyToMany (fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
-  public String getNew_group() {
-    return new_group;
+  public Groups getGroups() {
+    return new Groups(groups);
   }
-
+  public void withGroups(Set<GroupData> groups) {
+    this.groups = groups;
+  }
   @Override
   public String toString() {
     return "UserData{" + "id=" + id + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", mobile='" + mobile + '\'' + '}';
@@ -241,5 +244,9 @@ public class UserData {
     result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
+  }
+  public UserData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
   }
 }

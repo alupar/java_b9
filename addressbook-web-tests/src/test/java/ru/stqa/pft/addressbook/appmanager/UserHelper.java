@@ -37,15 +37,17 @@ public class UserHelper extends BaseHelper {
     type(By.name("home"), userData.getHomePhone());
     //attach(By.name("photo"), userData.getPhoto());
 
-    String group1 = userData.getNew_group();
+    //String group1 = userData.getNew_group();
     if (creation) {
-      if (group1 != null) {
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getNew_group());
+      if (userData.getGroups().size() > 0) {
+        Assert.assertTrue(userData.getGroups().size() == 1);
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroups().iterator().next().getName());
       }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
+
 
   public void initUserCreation() {
     click(By.linkText("add new"));

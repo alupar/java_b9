@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.Groups;
 import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
@@ -29,7 +30,7 @@ public class UserCreationTests extends TestBase {
       String line = reader.readLine();
       while (line != null) {
         String[] split = line.split(";");
-        list.add(new Object[]{new UserData().withFirstname(split[0]).withLastname(split[1]).withMobile(split[2]).withNew_group(split[3]).withAddress(split[4]).withEmail(split[5]).withEmail2(split[6])});
+        list.add(new Object[]{new UserData().withFirstname(split[0]).withLastname(split[1]).withMobile(split[2]).withAddress(split[4]).withEmail(split[5]).withEmail2(split[6])});
         line = reader.readLine();
       }
       return list.iterator();
@@ -59,6 +60,7 @@ public class UserCreationTests extends TestBase {
 
   @Test(dataProvider = "validUsersFromJson")
   public void testUserCreation(UserData user) {
+    Groups groups=app.db().groups();
     Users before = app.db().users();
     //File photo=new File("src/test/resources/murmur.jpg");
     app.user().create(user, true);

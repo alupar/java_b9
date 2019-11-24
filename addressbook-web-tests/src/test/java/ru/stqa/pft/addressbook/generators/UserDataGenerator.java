@@ -76,7 +76,7 @@ public class UserDataGenerator {
   private static void saveAsCSV(List<UserData> users, File file) throws IOException {
     try (Writer writer = new FileWriter(file)) {
       for (UserData user : users) {
-        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s\n", user.getFirstname(), user.getLastname(), user.getMobile(), user.getNew_group(), user.getAddress(), user.getEmail(), user.getEmail2()));
+        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s\n", user.getFirstname(), user.getLastname(), user.getMobile(), user.getAddress(), user.getEmail(), user.getEmail2()));
       }
     }
   }
