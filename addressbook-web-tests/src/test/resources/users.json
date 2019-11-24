@@ -16,14 +16,5 @@
     "email2": "lol1@lol1.com",
     "mobile": "моб.телефон 89091",
     "new_group": "test321"
-  },
-  {
-    "firstname": "Имя 2",
-    "lastname": "Фамилия 2",
-    "address": "г. Москва, ул. 2-ая",
-    "email": "test2@test2.com",
-    "email2": "lol2@lol2.com",
-    "mobile": "моб.телефон 89092",
-    "new_group": "test321"
   }
 ]
