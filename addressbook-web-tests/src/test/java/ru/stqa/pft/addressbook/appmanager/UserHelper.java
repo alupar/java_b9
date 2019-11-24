@@ -9,7 +9,6 @@ import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
 import java.util.List;
-import java.util.Set;
 
 public class UserHelper extends BaseHelper {
 
@@ -36,14 +35,17 @@ public class UserHelper extends BaseHelper {
     type(By.name("mobile"), userData.getMobile());
     type(By.name("work"), userData.getWorkPhone());
     type(By.name("home"), userData.getHomePhone());
-    attach(By.name("photo"), userData.getPhoto());
+    //attach(By.name("photo"), userData.getPhoto());
+
+    String group1 = userData.getNew_group();
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getNew_group());
+      if (group1 != null) {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getNew_group());
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
-
 
   public void initUserCreation() {
     click(By.linkText("add new"));
@@ -85,7 +87,7 @@ public class UserHelper extends BaseHelper {
     CloseAlert();
   }
 
-  public void modify(Set<UserData> before, UserData user) {
+  public void modify(UserData user) {
     initUserModificationById(user.getId());
     fillUserForm(user, false);
     submitUserModification();

@@ -14,7 +14,7 @@ public class UserDeletionTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().userPage();
-    if (app.user().all().size() == 0) {
+    if (app.db().users().size() == 0) {
       app.user().create(new UserData().withFirstname("Сергей1").withMiddlename("Иванович").withLastname("Иванов").withNickname("ivanov").withCompany("Home").withEmail("lol@lol.ru").withEmail2("test@test.ru").withHomepage("localhost").withMobile("+7 999 1112234").withHomePhone("+7(999)1112234").withWorkPhone("8999-111-2234").withNew_group("test321"), true);
       app.goTo().userPage();
     }
@@ -22,11 +22,11 @@ public class UserDeletionTests extends TestBase {
 
   @Test
   public void testUserDeletion() {
-    Users before = app.user().all();
+    Users before = app.db().users();
     UserData deletedUser = before.iterator().next();
     app.user().delete(deletedUser);
     app.goTo().userPage();
-    Users after = app.user().all();
+    Users after = app.db().users();
     Assert.assertEquals(after.size(), before.size() - 1);
     before.remove(deletedUser);
     Assert.assertEquals(before, after);

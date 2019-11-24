@@ -13,7 +13,7 @@ public class UserModificationTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().userPage();
-    if (app.user().all().size() == 0) {
+    if (app.db().users().size() == 0) {
       app.user().create(new UserData().withFirstname("Сергей1").withMiddlename("Иванович").withLastname("Иванов").withNickname("ivanov").withCompany("Home").withEmail("lol@lol.ru").withEmail2("test@test.ru").withHomepage("localhost").withMobile("+79991112234").withWorkPhone("+7(999)1112234").withHomePhone("8999-111-2234").withNew_group("test321"), true);
       app.goTo().userPage();
     }
@@ -21,13 +21,13 @@ public class UserModificationTests extends TestBase {
 
   @Test
   public void testUserModification() {
-    Users before = app.user().all();
+    Users before = app.db().users();
     UserData modifiedUser = before.iterator().next();
     UserData user = new UserData().withId(modifiedUser.getId()).withFirstname("Сергей2").withMiddlename("Иванович").withLastname("Иванов").withNickname("ivanov").withCompany("Home").withEmail("lol@lol.ru").withEmail2("test@test.ru").withHomepage("localhost").withMobile("+79991112234").withNew_group(null);
 
-    app.user().modify(before, user);
+    app.user().modify(user);
     app.goTo().userPage();
-    Users after = app.user().all();
+    Users after = app.db().users();
     Assert.assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.without(modifiedUser).withAdded(user)));
   }

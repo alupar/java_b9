@@ -59,11 +59,11 @@ public class UserCreationTests extends TestBase {
 
   @Test(dataProvider = "validUsersFromJson")
   public void testUserCreation(UserData user) {
-    Users before = app.user().all();
+    Users before = app.db().users();
     //File photo=new File("src/test/resources/murmur.jpg");
     app.user().create(user, true);
     app.goTo().userPage();
-    Users after = app.user().all();
+    Users after = app.db().users();
     assertThat(after.size(), equalTo(before.size() + 1));
     assertThat(after, equalTo(before.withAdded(user.withId(after.stream().mapToInt((g) -> (g).getId()).max().getAsInt()))));
   }
