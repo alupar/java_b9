@@ -14,7 +14,7 @@ public class UserModificationTests extends TestBase {
   public void ensurePreconditions() {
     app.goTo().userPage();
     if (app.db().users().size() == 0) {
-      app.user().create(new UserData().withFirstname("Сергей1").withMiddlename("Иванович").withLastname("Иванов").withNickname("ivanov").withCompany("Home").withEmail("lol@lol.ru").withEmail2("test@test.ru").withHomepage("localhost").withMobile("+79991112234").withWorkPhone("+7(999)1112234").withHomePhone("8999-111-2234"), true);
+      app.user().create(new UserData().withFirstname("Сергей1").withMiddlename("Иванович").withLastname("Иванов").withNickname("ivanov").withCompany("Home").withEmail("lol@lol.ru").withEmail2("test@test.ru").withHomepage("localhost").withMobile("+79991112234").withWorkPhone("+7(999)1112234").withHomePhone("8999-111-2234"));
       app.goTo().userPage();
     }
   }

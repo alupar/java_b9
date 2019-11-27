@@ -63,7 +63,7 @@ public class UserCreationTests extends TestBase {
     Groups groups=app.db().groups();
     Users before = app.db().users();
     //File photo=new File("src/test/resources/murmur.jpg");
-    app.user().create(user, true);
+    app.user().create(user);
     app.goTo().userPage();
     Users after = app.db().users();
     assertThat(after.size(), equalTo(before.size() + 1));

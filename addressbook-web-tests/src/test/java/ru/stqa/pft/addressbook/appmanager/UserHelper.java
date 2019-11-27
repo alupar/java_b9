@@ -21,7 +21,7 @@ public class UserHelper extends BaseHelper {
     click(By.name("submit"));
   }
 
-  public void fillUserForm(UserData userData, boolean creation) {
+  public void fillUserForm(UserData userData) {
     type(By.name("firstname"), userData.getFirstname());
     type(By.name("middlename"), userData.getMiddlename());
     type(By.name("lastname"), userData.getLastname());
@@ -37,15 +37,14 @@ public class UserHelper extends BaseHelper {
     type(By.name("home"), userData.getHomePhone());
     //attach(By.name("photo"), userData.getPhoto());
 
-    //String group1 = userData.getNew_group();
-    if (creation) {
-      if (userData.getGroups().size() > 0) {
-        Assert.assertTrue(userData.getGroups().size() == 1);
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroups().iterator().next().getName());
-      }
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
-    }
+  //  if (creation) {
+  //    if (userData.getGroups().size() > 0) {
+  //      Assert.assertTrue(userData.getGroups().size() == 1);
+  //      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroups().iterator().next().getName());
+  //    }
+  //  } else {
+  //    Assert.assertFalse(isElementPresent(By.name("new_group")));
+  //  }
   }
 
 
@@ -77,9 +76,9 @@ public class UserHelper extends BaseHelper {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
-  public void create(UserData user, boolean creation) {
+  public void create(UserData user) {
     initUserCreation();
-    fillUserForm(user, creation);
+    fillUserForm(user);
     submitUserCreation();
   }
 
@@ -91,7 +90,7 @@ public class UserHelper extends BaseHelper {
 
   public void modify(UserData user) {
     initUserModificationById(user.getId());
-    fillUserForm(user, false);
+    fillUserForm(user);
     submitUserModification();
   }
 
