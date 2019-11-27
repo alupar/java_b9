@@ -210,17 +210,18 @@ public class UserData {
     return workPhone;
   }
 
-  @ManyToMany (fetch = FetchType.EAGER)
-  @JoinTable(name = "address_in_groups",
-          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
   private Set<GroupData> groups = new HashSet<GroupData>();
 
   public Groups getGroups() {
     return new Groups(groups);
   }
+
   public void withGroups(Set<GroupData> groups) {
     this.groups = groups;
   }
+
   @Override
   public String toString() {
     return "UserData{" + "id=" + id + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", mobile='" + mobile + '\'' + '}';
@@ -245,6 +246,7 @@ public class UserData {
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
   }
+
   public UserData inGroup(GroupData group) {
     groups.add(group);
     return this;

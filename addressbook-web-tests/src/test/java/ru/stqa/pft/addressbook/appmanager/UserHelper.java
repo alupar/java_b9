@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
@@ -37,14 +37,14 @@ public class UserHelper extends BaseHelper {
     type(By.name("home"), userData.getHomePhone());
     //attach(By.name("photo"), userData.getPhoto());
 
-  //  if (creation) {
-  //    if (userData.getGroups().size() > 0) {
-  //      Assert.assertTrue(userData.getGroups().size() == 1);
-  //      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroups().iterator().next().getName());
-  //    }
-  //  } else {
-  //    Assert.assertFalse(isElementPresent(By.name("new_group")));
-  //  }
+    //  if (creation) {
+    //    if (userData.getGroups().size() > 0) {
+    //      Assert.assertTrue(userData.getGroups().size() == 1);
+    //      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroups().iterator().next().getName());
+    //    }
+    //  } else {
+    //    Assert.assertFalse(isElementPresent(By.name("new_group")));
+    //  }
   }
 
 
@@ -127,5 +127,28 @@ public class UserHelper extends BaseHelper {
     String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
     return new UserData().withId(user.getId()).withFirstname(firstname).withLastname(lastname).withAddress(address).withHomePhone(home).withMobile(mobile).withWorkPhone(work).withEmail(email).withEmail2(email2).withEmail3(email3);
+  }
+
+  public void addGroup(UserData user) {
+    selectUserById(user.getId());
+    addSelectedUserToGroup(user);
+  }
+
+  private void addSelectedUserToGroup(UserData user) {
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(user.getGroups().iterator().next().getName());
+    click(By.xpath("//input[@value='Add to']"));
+    wd.findElement(By.cssSelector("div.msgbox"));
+  }
+
+
+  public void delFromGroup(UserData user, GroupData group) {
+    new Select(wd.findElement(By.name("group"))).selectByIndex(group.getId());
+    selectUserById(user.getId());
+    deleteSelectedUserFromGroup(user, group);
+  }
+
+  private void deleteSelectedUserFromGroup(UserData user, GroupData group) {
+    click(By.xpath("//input[@name='remove']"));
+    wd.findElement(By.cssSelector("div.msgbox"));
   }
 }
