@@ -129,22 +129,23 @@ public class UserHelper extends BaseHelper {
     return new UserData().withId(user.getId()).withFirstname(firstname).withLastname(lastname).withAddress(address).withHomePhone(home).withMobile(mobile).withWorkPhone(work).withEmail(email).withEmail2(email2).withEmail3(email3);
   }
 
-  public void addGroup(UserData user) {
+  public void addToGroup(UserData user, GroupData groupToAdd) {
     selectUserById(user.getId());
-    addSelectedUserToGroup(user);
+    addSelectedUserToGroup(user, groupToAdd);
   }
 
-  private void addSelectedUserToGroup(UserData user) {
-    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(user.getGroups().iterator().next().getName());
+  public void addSelectedUserToGroup(UserData user, GroupData group) {
+    String myvalue = String.valueOf(group.getId());
+    new Select(wd.findElement(By.name("to_group"))).selectByValue(myvalue);
     click(By.xpath("//input[@value='Add to']"));
-    wd.findElement(By.cssSelector("div.msgbox"));
+    System.out.println("Added user " + user.getId() + " to a group " + group.getId() + " " + group.getName());
   }
-
 
   public void delFromGroup(UserData user, GroupData group) {
-    new Select(wd.findElement(By.name("group"))).selectByIndex(group.getId());
     selectUserById(user.getId());
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
     deleteSelectedUserFromGroup(user, group);
+    System.out.println("Removed user " + user.getId() + " from a group " + group.getId() + " " + group.getName());
   }
 
   private void deleteSelectedUserFromGroup(UserData user, GroupData group) {
