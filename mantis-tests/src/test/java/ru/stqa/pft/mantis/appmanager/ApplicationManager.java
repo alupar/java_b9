@@ -1,5 +1,5 @@
 package ru.stqa.pft.mantis.appmanager;
-
+import org.apache.http.impl.client.HttpClients;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -50,5 +50,13 @@ public class ApplicationManager {
     } catch (NoSuchElementException e) {
       return false;
     }
+  }
+
+  public HttpSession newSession() {
+    return new HttpSession(this);
+  }
+
+  public String getProperty(String key) {
+    return properties.getProperty(key);
   }
 }
