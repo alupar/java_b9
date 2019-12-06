@@ -19,8 +19,8 @@ public class ResetPasswordUser extends TestBase{
 
   @Test
   public void testResetPasswordUser() throws IOException, MessagingException {
-    String username = "user1575396396087";
-    String email = "user1575396396087@localhost";
+    String username = "user1";
+    String email = "user1@localhost";
     String password = "password";
     String newpassword = "newpassword";
     String adminname = app.getProperty("web.adminLogin");
